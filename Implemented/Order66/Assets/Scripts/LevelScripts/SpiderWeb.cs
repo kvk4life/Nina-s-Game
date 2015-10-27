@@ -13,8 +13,7 @@ public class SpiderWeb : MonoBehaviour {
 	
 	void Update () {
 		if (Physics.Raycast(transform.position, -Vector3.up, out hit, rayDis)){
-			if(hit.transform.tag == "SpiderWeb"){
-
+			if(hit.transform.tag == "CobWeb"){
 				rb.velocity = new Vector3 (0, jumpHeight, 0);
 			}
 		}
