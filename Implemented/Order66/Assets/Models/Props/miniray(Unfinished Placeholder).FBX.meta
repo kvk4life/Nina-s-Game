@@ -1,0 +1,281 @@
+fileFormatVersion: 2
+guid: a3dc29ed2db8d92429f9bae90cfb7783
+timeCreated: 1445944798
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Back_Spiral
+    100002: BeamGenerator
+    100004: Black_Wire_End
+    100006: Cage_Bar
+    100008: Cage_Bar 1
+    100010: Cage_Bar 2
+    100012: Cage_Bar 3
+    100014: Cage_Bar 4
+    100016: Cage_Bar 5
+    100018: Cage_Bar 6
+    100020: Cage_Bar 7
+    100022: Cage_Bar 8
+    100024: Cage_Bar 9
+    100026: Cage_Bar001
+    100028: Cage_Bar002
+    100030: Camera
+    100032: Coil1
+    100034: Coil2
+    100036: Front_Bar
+    100038: Front_Bar 1
+    100040: Front_Spiral
+    100042: Front_Wire_B_1
+    100044: Front_Wire_B_2
+    100046: Front_Wire_B_3
+    100048: Front_Wire_B_4
+    100050: Front_Wire_R_1
+    100052: Front_Wire_R_2
+    100054: Front_Wire_R_3
+    100056: Front_Wire_R_4
+    100058: Knob_Large
+    100060: Knob_Small
+    100062: Knob_Small 1
+    100064: Laser_Guide_Plate
+    100066: Light_Cable
+    100068: Meter_Box
+    100070: Middle_Spiral
+    100072: //RootNode
+    100074: Red_Wire_End
+    100076: Socket
+    100078: Stand
+    100080: Twisty_Knob_Body
+    100082: Twisty_Knob_Knob
+    100084: Twisty_Knob_Window
+    400000: Back_Spiral
+    400002: BeamGenerator
+    400004: Black_Wire_End
+    400006: Cage_Bar
+    400008: Cage_Bar 1
+    400010: Cage_Bar 2
+    400012: Cage_Bar 3
+    400014: Cage_Bar 4
+    400016: Cage_Bar 5
+    400018: Cage_Bar 6
+    400020: Cage_Bar 7
+    400022: Cage_Bar 8
+    400024: Cage_Bar 9
+    400026: Cage_Bar001
+    400028: Cage_Bar002
+    400030: Camera
+    400032: Coil1
+    400034: Coil2
+    400036: Front_Bar
+    400038: Front_Bar 1
+    400040: Front_Spiral
+    400042: Front_Wire_B_1
+    400044: Front_Wire_B_2
+    400046: Front_Wire_B_3
+    400048: Front_Wire_B_4
+    400050: Front_Wire_R_1
+    400052: Front_Wire_R_2
+    400054: Front_Wire_R_3
+    400056: Front_Wire_R_4
+    400058: Knob_Large
+    400060: Knob_Small
+    400062: Knob_Small 1
+    400064: Laser_Guide_Plate
+    400066: Light_Cable
+    400068: Meter_Box
+    400070: Middle_Spiral
+    400072: //RootNode
+    400074: Red_Wire_End
+    400076: Socket
+    400078: Stand
+    400080: Twisty_Knob_Body
+    400082: Twisty_Knob_Knob
+    400084: Twisty_Knob_Window
+    2300000: Back_Spiral
+    2300002: BeamGenerator
+    2300004: Black_Wire_End
+    2300006: Cage_Bar
+    2300008: Cage_Bar 1
+    2300010: Cage_Bar 2
+    2300012: Cage_Bar 3
+    2300014: Cage_Bar 4
+    2300016: Cage_Bar 5
+    2300018: Cage_Bar 6
+    2300020: Cage_Bar 7
+    2300022: Cage_Bar 8
+    2300024: Cage_Bar 9
+    2300026: Cage_Bar001
+    2300028: Cage_Bar002
+    2300030: Camera
+    2300032: Coil1
+    2300034: Coil2
+    2300036: Front_Bar
+    2300038: Front_Bar 1
+    2300040: Front_Spiral
+    2300042: Front_Wire_B_1
+    2300044: Front_Wire_B_2
+    2300046: Front_Wire_B_3
+    2300048: Front_Wire_B_4
+    2300050: Front_Wire_R_1
+    2300052: Front_Wire_R_2
+    2300054: Front_Wire_R_3
+    2300056: Front_Wire_R_4
+    2300058: Knob_Large
+    2300060: Knob_Small
+    2300062: Knob_Small 1
+    2300064: Laser_Guide_Plate
+    2300066: Light_Cable
+    2300068: Meter_Box
+    2300070: Middle_Spiral
+    2300072: Red_Wire_End
+    2300074: Socket
+    2300076: Stand
+    2300078: Twisty_Knob_Body
+    2300080: Twisty_Knob_Knob
+    2300082: Twisty_Knob_Window
+    3300000: Back_Spiral
+    3300002: BeamGenerator
+    3300004: Black_Wire_End
+    3300006: Cage_Bar
+    3300008: Cage_Bar 1
+    3300010: Cage_Bar 2
+    3300012: Cage_Bar 3
+    3300014: Cage_Bar 4
+    3300016: Cage_Bar 5
+    3300018: Cage_Bar 6
+    3300020: Cage_Bar 7
+    3300022: Cage_Bar 8
+    3300024: Cage_Bar 9
+    3300026: Cage_Bar001
+    3300028: Cage_Bar002
+    3300030: Camera
+    3300032: Coil1
+    3300034: Coil2
+    3300036: Front_Bar
+    3300038: Front_Bar 1
+    3300040: Front_Spiral
+    3300042: Front_Wire_B_1
+    3300044: Front_Wire_B_2
+    3300046: Front_Wire_B_3
+    3300048: Front_Wire_B_4
+    3300050: Front_Wire_R_1
+    3300052: Front_Wire_R_2
+    3300054: Front_Wire_R_3
+    3300056: Front_Wire_R_4
+    3300058: Knob_Large
+    3300060: Knob_Small
+    3300062: Knob_Small 1
+    3300064: Laser_Guide_Plate
+    3300066: Light_Cable
+    3300068: Meter_Box
+    3300070: Middle_Spiral
+    3300072: Red_Wire_End
+    3300074: Socket
+    3300076: Stand
+    3300078: Twisty_Knob_Body
+    3300080: Twisty_Knob_Knob
+    3300082: Twisty_Knob_Window
+    4300000: Front_Spiral
+    4300002: Middle_Spiral
+    4300004: Back_Spiral
+    4300006: Front_Bar
+    4300008: Front_Bar
+    4300010: Cage_Bar
+    4300012: Laser_Guide_Plate
+    4300014: Stand
+    4300016: Camera
+    4300018: Light_Cable
+    4300020: Cage_Bar
+    4300022: Cage_Bar
+    4300024: Cage_Bar
+    4300026: Cage_Bar
+    4300028: Cage_Bar
+    4300030: Cage_Bar
+    4300032: Cage_Bar
+    4300034: Cage_Bar
+    4300036: Cage_Bar
+    4300038: Cage_Bar001
+    4300040: Cage_Bar002
+    4300042: Meter_Box
+    4300044: Knob_Small
+    4300046: Knob_Small
+    4300048: Knob_Large
+    4300050: Front_Wire_R_3
+    4300052: Black_Wire_End
+    4300054: Red_Wire_End
+    4300056: Twisty_Knob_Body
+    4300058: Twisty_Knob_Window
+    4300060: Twisty_Knob_Knob
+    4300062: Socket
+    4300064: Front_Wire_R_1
+    4300066: Front_Wire_B_1
+    4300068: Front_Wire_B_3
+    4300070: Front_Wire_R_2
+    4300072: Front_Wire_R_4
+    4300074: Front_Wire_B_2
+    4300076: Front_Wire_B_4
+    4300078: BeamGenerator
+    4300080: Coil1
+    4300082: Coil2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
