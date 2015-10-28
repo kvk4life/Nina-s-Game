@@ -1,32 +1,33 @@
 fileFormatVersion: 2
-guid: 457e918d3d349224abe4c0d5602b633c
-timeCreated: 1445944797
+guid: c014edeb74fd9d243bfffcaf65e6903c
+timeCreated: 1446028835
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: Eyes
-    100002: Hair
-    100004: Nina
-    100006: //RootNode
+    100000: //RootNode
+    100002: Eyes
+    100004: Hair
+    100006: Nina 1
     100008: Overall
-    400000: Eyes
-    400002: Hair
-    400004: Nina
-    400006: //RootNode
+    400000: //RootNode
+    400002: Eyes
+    400004: Hair
+    400006: Nina 1
     400008: Overall
     2300000: Eyes
     2300002: Hair
-    2300004: Nina
+    2300004: Nina 1
     2300006: Overall
     3300000: Eyes
     3300002: Hair
-    3300004: Nina
+    3300004: Nina 1
     3300006: Overall
     4300000: Overall
     4300002: Nina
     4300004: Hair
     4300006: Eyes
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -84,7 +85,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   additionalBone: 0
   userData: 
   assetBundleName: 
