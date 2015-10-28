@@ -31,7 +31,7 @@ public class Main_Menu : MonoBehaviour {
 	}
 
 	public void NeueSpiel(){
-		Application.LoadLevel ("Boomstronk");
+		Application.LoadLevel ("Level 1");
 	}
 
 	public void SpielEnde(){
