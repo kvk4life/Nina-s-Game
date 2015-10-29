@@ -8,6 +8,7 @@ public class Stamina : MonoBehaviour {
 	public float staminaRegen;
 	public float regenRate;
 	float nextRegen;
+	public bool superEndurance;
 
 	public void Start(){
 		minStamina = 0;
@@ -15,6 +16,11 @@ public class Stamina : MonoBehaviour {
 	}
 
 	public void Update(){
+		if (!superEndurance) {
+			if (Input.GetButton ("Fire1")) {
+				StaminaReduction (25);
+			}
+		}
 		Regenerate ();
 		Stabilizer ();
 	}
@@ -25,7 +31,7 @@ public class Stamina : MonoBehaviour {
 	}
 
 	public void Regenerate(){
-		if (stamina < maxStamina) {
+		if (stamina < maxStamina && !GetComponent<Defense>().blocken) {
 			if (Time.time > regenRate + nextRegen) {
 				stamina += staminaRegen;
 				nextRegen = Time.time;
@@ -37,7 +43,7 @@ public class Stamina : MonoBehaviour {
 		if (stamina > maxStamina) {
 			stamina = maxStamina;
 		}
-		if(stamina < minStamina){
+		if(stamina < minStamina + 1){
 			stamina = minStamina;
 		}
 	}

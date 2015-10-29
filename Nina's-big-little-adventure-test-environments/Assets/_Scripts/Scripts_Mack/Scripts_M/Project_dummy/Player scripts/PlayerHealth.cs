@@ -5,17 +5,23 @@ public class PlayerHealth : MonoBehaviour {
 	public float health;
 	GameObject gameMng;
 	bool dead;
+	public bool immortal;
 	
 	public void Start(){
 		gameMng = GameObject.Find ("GameMng");
 	}
 	
 	public float Damage (float damage){
-		if(health > 0){
-			health -= damage;
-		}
-		if(health < 1){
-			Death ();
+		if (!immortal) {
+			if (health > 0) {
+				health -= damage;
+			}
+			if (health < 1) {
+				Death ();
+			}
+		} 
+		else {
+			health = 3;
 		}
 		return health;
 	}
