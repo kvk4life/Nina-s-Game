@@ -21,6 +21,8 @@ public class AntAI : MonoBehaviour
 	public Transform[] wayPointList;
 	public float wayPointDistanceCheck;
 	public int wayCounter;
+	private float playerDist;
+	private float waypointDist;
 	
 	
 	public enum AIStates
@@ -99,9 +101,10 @@ public class AntAI : MonoBehaviour
 	
 	void DistanceCheck() 
 	{
-		
-		float playerDist = Vector3.Distance(playerTarget.position, transform.position);
-		float waypointDist = Vector3.Distance(waypointTarget[counter].position, transform.position);
+		if (playerTarget != null) {	
+			playerDist = Vector3.Distance (playerTarget.position, transform.position);
+			waypointDist = Vector3.Distance (waypointTarget [counter].position, transform.position);
+		}
 		
 		if( playerDist < 5)
 		{

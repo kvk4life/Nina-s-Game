@@ -6,7 +6,7 @@ public class CheckPoint : MonoBehaviour {
 
 	public void OnTriggerEnter(Collider col){
 		if(col.transform.tag == "Player"){
-			GameObject.Find ("GameMng").GetComponent<Respawn>().SetCheckPoint(CheckPointNumber);
+			GameObject.Find ("GameManager").GetComponent<Respawn>().SetCheckPoint(CheckPointNumber);
 		}
 	}
 }

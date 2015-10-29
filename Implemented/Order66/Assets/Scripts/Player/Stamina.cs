@@ -17,10 +17,13 @@ public class Stamina : MonoBehaviour {
 	public void Update(){
 		Regenerate ();
 		Stabilizer ();
+		if (GetComponent<Defense> ().blocken) {
+			StaminaReduction(GetComponent<Defense>().minStaminaReq);
+		}
 	}
 
 	public float StaminaReduction(float reduction){
-		stamina -= reduction;
+		stamina -= reduction*Time.deltaTime;
 		return stamina;
 	}
 

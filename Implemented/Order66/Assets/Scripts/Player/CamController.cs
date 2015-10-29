@@ -46,23 +46,25 @@ public class CamController : MonoBehaviour {
 		desiredDistance -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * zoomRate * Mathf.Abs(desiredDistance);
 		desiredDistance =ClampAngle(desiredDistance, minViewDistance, maxViewDistance);
 		correctedDistance = desiredDistance;
+		if (camTarget != null) {
+			Vector3 position = camTarget.position - (rotation * Vector3.forward * desiredDistance);
+		
 
-		Vector3 position = camTarget.position - (rotation * Vector3.forward * desiredDistance);
+			RaycastHit collisionHit;
+			bool isCorrected = false;
+			Vector3 cameraTargetPosition = new Vector3 (camTarget.position.x, camTarget.position.y + camTargetHeight, camTarget.position.z);
+			if (Physics.Linecast (cameraTargetPosition, position, out collisionHit)) {
+				position = collisionHit.point;
+				correctedDistance = Vector3.Distance (cameraTargetPosition, position);
+				isCorrected = true;
+			}
 
-		RaycastHit collisionHit;
-		bool isCorrected = false;
-		Vector3 cameraTargetPosition = new Vector3(camTarget.position.x, camTarget.position.y + camTargetHeight, camTarget.position.z);
-		if(Physics.Linecast(cameraTargetPosition,position, out collisionHit)) {
-			position = collisionHit.point;
-			correctedDistance = Vector3.Distance(cameraTargetPosition, position);
-			isCorrected = true;
+			currentDistance = !isCorrected || correctedDistance > currentDistance ? Mathf.Lerp (currentDistance, correctedDistance, Time.deltaTime * zoomRate) : correctedDistance;
+			position = camTarget.position - (rotation * Vector3.forward * currentDistance + new Vector3 (0, camTargetHeight, 0));
+
+			transform.rotation = rotation;
+			transform.position = position;
 		}
-
-		currentDistance = !isCorrected || correctedDistance > currentDistance ? Mathf.Lerp(currentDistance, correctedDistance, Time.deltaTime * zoomRate) : correctedDistance;
-		position = camTarget.position - (rotation * Vector3.forward * currentDistance + new Vector3(0, camTargetHeight, 0));
-
-		transform.rotation = rotation;
-		transform.position = position;
 	}
 
 	private static float ClampAngle(float angle, float min, float max) {

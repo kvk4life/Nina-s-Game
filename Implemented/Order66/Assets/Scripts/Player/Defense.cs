@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Defense : MonoBehaviour {
 	public bool blocken;
-
 	public float minStaminaReq;
 
 	public void Update(){

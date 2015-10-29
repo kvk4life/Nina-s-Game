@@ -14,5 +14,6 @@ public class Respawn : MonoBehaviour {
 	public void Respawning(){
 		player.transform.position = checkPoints [curCheckPoint].position;
 		player.transform.rotation = checkPoints [curCheckPoint].rotation;
+		player.GetComponent<PlayerHealth> ().Respawn ();
 	}
 }
