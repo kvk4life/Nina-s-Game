@@ -12,6 +12,9 @@ public class Interactables : MonoBehaviour {
 	public GameObject healthPackText;
 	public GameObject naaldText;
 	public GameObject shieldText;
+	public GameObject springText;
+	public GameObject SpringObj;
+	public Transform springSpawnPos;
 	public GameObject shield;
 	public Transform spawnPos;
     public Transform theCanvas;
@@ -36,6 +39,11 @@ public class Interactables : MonoBehaviour {
 			interactableObject = collision.gameObject;
 			Shield();
 		}
+		if (collision.transform.tag == "Spring"){
+			interactableObject = collision.gameObject;
+			Spring();
+		}
+
 	}
 
 	void Update() {
@@ -59,6 +67,9 @@ public class Interactables : MonoBehaviour {
 				case "Shield":
 					SetShield();
 					break;
+				case "Spring":
+					SetSpring();
+					break;
 			}
 		}
 		if (interactableObject != null) {
@@ -67,6 +78,20 @@ public class Interactables : MonoBehaviour {
 		if(shownText != null) {
 			Destroy(shownText);
 		}
+	}
+
+	void Spring (){
+		if (maySpawn) {
+			shownText = (GameObject)Instantiate(springText, spawnPos.position, Quaternion.identity);
+			shownText.transform.SetParent(theCanvas);
+			maySpawn = false;
+			
+		}
+	}
+
+	void SetSpring (){
+		SpringObj.gameObject.SetActive (true);
+		GetComponent<Movement> ().mayJump = true;
 	}
 
 	void Madeliefjes() {

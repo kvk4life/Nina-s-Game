@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour {
 	public float Damage (float damage){
 		health -= damage;
 		if(health <= 0){
-			GameObject.Find ("GameMng").GetComponent<Respawn> ().Respawning();
+			GameObject.Find ("GameManager").GetComponent<Respawn> ().Respawning();
 			Destroy(gameObject);
 		}
 		return health;
@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour {
 		//Testing Respawning
 		if(health <= 0){
 			//Game Over Scherm.
-			GameObject.Find ("GameMng").GetComponent<Respawn> ().Respawning();
+			GameObject.Find ("GameManager").GetComponent<Respawn> ().Respawning();
 			Destroy(gameObject);
 		}
 	}

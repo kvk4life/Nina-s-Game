@@ -84,11 +84,10 @@ public class EnemyAI : MonoBehaviour {
 	void DistanceCheck() {
 		float playerDist = Vector3.Distance(playerTarget.position, transform.position);
 		float waypointDist = Vector3.Distance(waypointTarget[counter].position, transform.position);
-		print (waypointDist);
-		if( playerDist < 5){
+		if( playerDist < 7){
 			aiStates = AIStates.Follow;
 			moveTime = 10;
-			if(playerDist < 2){
+			if(playerDist < 4){
 				aiStates = AIStates.Attacking;
 			}
 		}

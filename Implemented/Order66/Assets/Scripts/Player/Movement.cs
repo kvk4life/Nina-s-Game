@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour {
 	public Rigidbody rb;
 	public int jumpCounter;
 	public int jumpHeight;
+	public bool mayJump;
 
 	void Start(){
 		rb = GetComponent<Rigidbody>();
@@ -43,9 +44,11 @@ public class Movement : MonoBehaviour {
 	}
 
 	void Jump (){
-		if (jumpCounter < 1) 	{
-			rb.velocity = new Vector3 (0, jumpHeight, 0);
-			jumpCounter = 1;
+		if(mayJump){
+			if (jumpCounter < 1) {
+				rb.velocity = new Vector3 (0, jumpHeight, 0);
+				jumpCounter = 1;
+			}
 		}
 	}
 
