@@ -24,7 +24,7 @@ public class Heartscript : MonoBehaviour {
 	
 	void HudCheck (){
 		for (int i = 0; i < maxLength; i++) {
-			spriteList[i].GetComponent<SpriteRenderer> ().sprite = heartHud[i];
+			spriteList[i].GetComponent<SpriteRenderer>().sprite = heartHud[i];
 		}
 
 	}
