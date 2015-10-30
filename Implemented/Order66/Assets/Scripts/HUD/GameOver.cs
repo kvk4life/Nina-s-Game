@@ -10,6 +10,9 @@ public class GameOver : MonoBehaviour {
 	public float fader;
 
 	public GameObject GameOverScreen;
+	void start (){
+		GameOverScreen.SetActive (false);
+	}
 
 	public void Update(){
 		Fading ();
@@ -17,7 +20,8 @@ public class GameOver : MonoBehaviour {
 	}
 
 	public void GameOverSwitch(){
-		GameOverScreen.SetActive (gameOver);
+		gameOver = true;
+		GameOverScreen.SetActive (true);
 	}
 
 	public void Fading(){
@@ -27,6 +31,13 @@ public class GameOver : MonoBehaviour {
 	}
 
 	public void ColorTest(){
-		GameOverScreen.GetComponent<CanvasGroup> ().alpha = fader;
+		if (gameOver) {
+			GameOverScreen.GetComponent<CanvasGroup> ().alpha = fader;
+		}
+	}
+	public void respawnButton (){
+		GetComponent<Respawn> ().Respawning ();
+		GameOverScreen.SetActive(false);
+		gameOver = false;
 	}
 }

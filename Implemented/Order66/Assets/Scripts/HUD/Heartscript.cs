@@ -24,12 +24,12 @@ public class Heartscript : MonoBehaviour {
 	
 	void HudCheck (){
 		for (int i = 0; i < maxLength; i++) {
-			spriteList[i].GetComponent<SpriteRenderer>().sprite = heartHud[i];
+			spriteList[i].GetComponent<Image>().sprite = heartHud[i];
 		}
 
 	}
 
-	void LoseHeart (){
+	public void LoseHeart (){
 		if (hearts[maxLength-1] > 0) {
 			if (hearts[h] >= 1) {
 				hearts[h] -= 1;
@@ -43,7 +43,7 @@ public class Heartscript : MonoBehaviour {
 		HeartCheck();
 	}
 
-	void GainHeart(){
+	public void GainHeart(){
 		if (hearts[0] < 2) {
 			if (hearts[h] <= 1) {
 				hearts[h] += 1;
@@ -58,15 +58,16 @@ public class Heartscript : MonoBehaviour {
 
 	void HeartCheck (){
 		if (hearts [h] == 0) {
-			heartHud[h] = null;
+			spriteList[h].GetComponent<Image>().sprite = null;
+			spriteList[h].SetActive(false);
 		}
 
 		if (hearts [h] == 1) {
-			heartHud[h] = halfHeart;
+			spriteList[h].GetComponent<Image>().sprite = halfHeart;
 		}
 
 		if (hearts [h] == 2) {
-			heartHud[h] = fullHeart;
+			spriteList[h].GetComponent<Image>().sprite = fullHeart;
 		}
 	}
 }

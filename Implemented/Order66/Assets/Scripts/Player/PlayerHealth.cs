@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour {
 	public float health;
 	private float beginHealth;
+	public GameObject gameMNGR;
 
 	void Start (){
 		beginHealth = health;
@@ -11,17 +12,18 @@ public class PlayerHealth : MonoBehaviour {
 
 	public float Damage (float damage){
 		health -= damage;
+		gameMNGR.GetComponent<Heartscript> ().LoseHeart ();
 		if (health <= 0) {
-			GameObject.Find ("GameManager").GetComponent<Respawn> ().Respawning ();
+			gameMNGR.GetComponent<GameOver>().GameOverSwitch();
+			gameMNGR.GetComponent<Respawn> ().Respawning ();
 		}
 		return health;
 	}
 
 	public void Update(){
-		//Testing Respawning
 		if(health <= 0){
 			//Game Over Scherm.
-			GameObject.Find ("GameManager").GetComponent<Respawn> ().Respawning();
+			gameMNGR.GetComponent<Respawn> ().Respawning();
 		}
 	}
 	public void Respawn (){
@@ -31,6 +33,7 @@ public class PlayerHealth : MonoBehaviour {
 	public float Heal (float heal){
 		if(health <= 2){
 			health += heal;
+			gameMNGR.GetComponent<Heartscript>().GainHeart();
 		}
 		return health;
 	}

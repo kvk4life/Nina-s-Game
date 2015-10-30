@@ -34,7 +34,7 @@ public class CamController : MonoBehaviour {
 			x += Input.GetAxis("Mouse X") * mouseXSpeed;
 			y -= Input.GetAxis("Mouse Y") * mouseYSpeed;
 		}
-		else if(Input.GetAxis("Vertical") != 0) {
+		else if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) {
 			float targetRotationAngle = camTarget.eulerAngles.y;
 			float cameraRotationAngle = transform.eulerAngles.y;
 			x = Mathf.LerpAngle(cameraRotationAngle, targetRotationAngle, lerpRate * Time.deltaTime);
