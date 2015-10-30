@@ -8,6 +8,7 @@ public class Stamina : MonoBehaviour {
 	public float staminaRegen;
 	public float regenRate;
 	float nextRegen;
+	public bool superEndurance;
 
 	public void Start(){
 		minStamina = 0;
@@ -17,8 +18,10 @@ public class Stamina : MonoBehaviour {
 	public void Update(){
 		Regenerate ();
 		Stabilizer ();
-		if (GetComponent<Defense> ().blocken) {
-			StaminaReduction(GetComponent<Defense>().minStaminaReq);
+		if(!superEndurance){
+			if (GetComponent<Defense> ().blocken) {
+				StaminaReduction(GetComponent<Defense>().minStaminaReq);
+			}
 		}
 	}
 

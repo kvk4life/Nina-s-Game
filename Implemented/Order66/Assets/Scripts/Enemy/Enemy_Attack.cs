@@ -19,11 +19,12 @@ public class Enemy_Attack : Enemy_Stats {
 	}
 
 	void DamageCheck(){
-		if (player.GetComponent<Defense> ().blocken) {
-			player.GetComponent<Stamina> ().StaminaReduction (staminaDamage);
-		}
-		else {
-			player.GetComponent<PlayerHealth>().Damage (power);
+		if (!player.GetComponent<Presentation> ().immortality) {
+			if (player.GetComponent<Defense> ().blocken) {
+				player.GetComponent<Stamina> ().StaminaReduction (staminaDamage);
+			} else {
+				player.GetComponent<PlayerHealth> ().Damage (power);
+			}
 		}
 	}
 }

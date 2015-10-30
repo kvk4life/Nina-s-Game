@@ -54,12 +54,14 @@ public class Presentation : MonoBehaviour {
 	public void ImmortalCheck(){
 		if(Input.GetButtonDown ("Immortal")){
 			immortality = !immortality;
-			GetComponent<PlayerHealth>().immortal = immortality;
+			GetComponent<PreHealth>().immortal = immortality;
 		}
 	}
 
 	public void EnduranceCheck(){
-		superEndurance = !superEndurance;
-		GetComponent<Stamina> ().superEndurance = superEndurance;
+		if(Input.GetButtonDown("Endurance")){
+			superEndurance = !superEndurance;
+			GetComponent<Stamina> ().superEndurance = superEndurance;
+		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Stamina : MonoBehaviour {
+public class PreStamina : MonoBehaviour {
 	public float stamina;
 	public float maxStamina;
 	float minStamina;
@@ -9,12 +9,12 @@ public class Stamina : MonoBehaviour {
 	public float regenRate;
 	float nextRegen;
 	public bool superEndurance;
-
+	
 	public void Start(){
 		minStamina = 0;
 		stamina = maxStamina;
 	}
-
+	
 	public void Update(){
 		if (!superEndurance) {
 			if (Input.GetButton ("Fire1")) {
@@ -24,12 +24,12 @@ public class Stamina : MonoBehaviour {
 		Regenerate ();
 		Stabilizer ();
 	}
-
+	
 	public float StaminaReduction(float reduction){
 		stamina -= reduction;
 		return stamina;
 	}
-
+	
 	public void Regenerate(){
 		if (stamina < maxStamina && !GetComponent<Defense>().blocken) {
 			if (Time.time > regenRate + nextRegen) {
@@ -38,7 +38,7 @@ public class Stamina : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void Stabilizer(){
 		if (stamina > maxStamina) {
 			stamina = maxStamina;

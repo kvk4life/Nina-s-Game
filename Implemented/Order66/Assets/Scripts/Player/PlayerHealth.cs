@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
 	public float health;
-	public float beginHealth;
+	private float beginHealth;
 
 	void Start (){
 		beginHealth = health;
@@ -11,8 +11,8 @@ public class PlayerHealth : MonoBehaviour {
 
 	public float Damage (float damage){
 		health -= damage;
-		if(health <= 0){
-			GameObject.Find ("GameManager").GetComponent<Respawn> ().Respawning();
+		if (health <= 0) {
+			GameObject.Find ("GameManager").GetComponent<Respawn> ().Respawning ();
 		}
 		return health;
 	}
