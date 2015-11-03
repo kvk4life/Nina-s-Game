@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
 	public float Heal (float heal){
-		if(health <= 2){
+		if(health <= 5){
 			health += heal;
 			gameMNGR.GetComponent<Heartscript>().GainHeart();
 		}

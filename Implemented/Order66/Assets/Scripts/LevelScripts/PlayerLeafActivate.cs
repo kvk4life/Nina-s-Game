@@ -15,8 +15,10 @@ public class PlayerLeafActivate : MonoBehaviour {
 //		}
 	}
 
-	void OnCollisionEnter(Collision trigger){
+	public void ActiveLeave (RaycastHit trigger){
+		print ("1");
 		if(trigger.transform.tag == "Blaadje"){
+			print("2");
 			trigger.transform.GetComponent<Leaves>().moveForward = true;
 			transform.SetParent(trigger.transform,false);
 			GetComponent<Rigidbody>().velocity = Vector3.zero;

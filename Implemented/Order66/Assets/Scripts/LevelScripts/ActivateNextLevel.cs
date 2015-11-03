@@ -17,7 +17,7 @@ public class ActivateNextLevel : MonoBehaviour {
 				spawnedText.transform.SetParent(theCanvas);
 				maySpawn = false;
 			}
-				if(Input.GetKeyDown (KeyCode.E)|| mayGo){
+			if(Input.GetButtonDown("Interact")|| mayGo){
 					collision.transform.GetComponent<LoadNextLevel>().GoToNextLevel();
 			}
 		}

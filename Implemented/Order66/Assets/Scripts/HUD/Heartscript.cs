@@ -45,10 +45,13 @@ public class Heartscript : MonoBehaviour {
 
 	public void GainHeart(){
 		if (hearts[0] < 2) {
+			print (h);
 			if (hearts[h] <= 1) {
+				print(h);
 				hearts[h] += 1;
 			} 
 			else {
+				print ("3");
 				h -= 1;
 				hearts[h] += 1;
 			}
@@ -64,10 +67,12 @@ public class Heartscript : MonoBehaviour {
 
 		if (hearts [h] == 1) {
 			spriteList[h].GetComponent<Image>().sprite = halfHeart;
+			spriteList[h].SetActive(true);
 		}
 
 		if (hearts [h] == 2) {
 			spriteList[h].GetComponent<Image>().sprite = fullHeart;
+			spriteList[h].SetActive(true);
 		}
 	}
 }

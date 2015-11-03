@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour {
 	public int jumpCounter;
 	public int jumpHeight;
 	public bool mayJump;
+	public RaycastHit rayHit;
 
 	void Start(){
 		rb = GetComponent<Rigidbody>();
@@ -21,8 +22,10 @@ public class Movement : MonoBehaviour {
 		if (Input.GetButtonDown ("Jump")) {
 			Jump();
 		}
-		if (Physics.Raycast(transform.position, -Vector3.up, jumpCheck)){
+		if (Physics.Raycast(transform.position, -Vector3.up,out rayHit, jumpCheck)){
 			jumpCounter = 0;
+			print (rayHit);
+			GetComponent<PlayerLeafActivate>().ActiveLeave(rayHit);
 		}
 		if (mayMove) {
 			Moving();
