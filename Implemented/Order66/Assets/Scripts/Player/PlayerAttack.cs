@@ -3,18 +3,37 @@ using System.Collections;
 
 public class PlayerAttack : MonoBehaviour {
 	public float damage;
-	RaycastHit pleh;
-	public Color meh;
+	public bool doDmg;
+	public float timer;
+	public float attackRate;
+
+	void Start (){
+		timer = attackRate;
+	}
 
 	void Update (){
-		if(Input.GetKeyDown (KeyCode.E)){
-			//hit animatie	
+		if (timer < 1) {
+			print ("1");
+			if (Input.GetButtonDown ("Interact")) {
+				print ("2");
+				doDmg = true;
+				//hit animatie	
+				timer = attackRate;
+			}
+		} else {
+			timer -=Time.deltaTime;
 		}
 	}
 
-	void OnCollisionEnter(Collision collision){
-		if(collision.transform.tag == "Enemy"){
-			collision.transform.GetComponent <EnemyHealth>().HealthEnemy(damage);
+	void OnTriggerStay(Collider collision){
+		print ("3");
+		if (doDmg) {
+			print ("4");
+			if (collision.transform.tag == "Enemy") {
+				print ("5");
+				collision.transform.GetComponent <EnemyHealth> ().HealthEnemy (damage);
+			}
+			doDmg = false;
 		}
 		print (collision);
 	}

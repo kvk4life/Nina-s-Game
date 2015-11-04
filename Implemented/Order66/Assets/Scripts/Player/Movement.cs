@@ -20,6 +20,11 @@ public class Movement : MonoBehaviour {
 	void Update() {
 		Rotation();
 		if (Input.GetButtonDown ("Jump")) {
+			if (Physics.Raycast(transform.position, -Vector3.up,out rayHit, jumpCheck)){
+				jumpCounter = 0;
+				print (rayHit);
+				GetComponent<PlayerLeafActivate>().ActiveLeave(rayHit);
+			}
 			Jump();
 		}
 		if (Physics.Raycast(transform.position, -Vector3.up,out rayHit, jumpCheck)){
