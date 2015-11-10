@@ -7,44 +7,57 @@ public class ThoughtBalloons : MonoBehaviour {
 	//Vervolgens moet er tekst in komen dat de speler hints en tips geeft
 	//De denkwolkjes moeten pas komen als ze getriggered worden
 	public bool triggerBalloons;
+	public bool deactivate;
+	public bool switchText;
 	public string[] balloonText;
 	public int curBalloonText;
+	public int curBalloonTextMax;
 	private int balloonCount;
 	public Text finalBalloonText;
 	public GameObject[] thoughtBalloons;
-	public GameObject thoughtBalloonsParent;
 	public float[] balloonFader;
 	public float faderSpeed;
 	private float switchCountDownReset;
 	public float switchCountDown;
 	public float deactivationCountDown;
 	private float deactivationCountDownReset;
-	private float balloonDuration;
-	public float maxBalloonDuration;
+	public float nextBalloonTextCountDown;
+	private float nextBalloonTextCountDownReset;
 	
 	public void Start(){
 		switchCountDownReset = switchCountDown;
 		deactivationCountDownReset = deactivationCountDown;
+		nextBalloonTextCountDownReset = nextBalloonTextCountDown;
 	}
 
 	public void Update(){
 		if(triggerBalloons){
 			TextSwapper();
 			BalloonActivation();
+			BalloonDeactivationCountDown();
 		}
 	}
 
 	public void TextSwapper(){
-		finalBalloonText.text = balloonText [curBalloonText];
+		if(curBalloonText < balloonText.Length){
+			finalBalloonText.text = balloonText [curBalloonText];
+		}
+		if(curBalloonText == curBalloonTextMax){
+			deactivate = true;
+		}
+		if(nextBalloonTextCountDown > 0 && switchText){
+			nextBalloonTextCountDown -= Time.deltaTime;
+		}
+		if (nextBalloonTextCountDown < 0) {
+			curBalloonText++;
+			nextBalloonTextCountDown = nextBalloonTextCountDownReset;
+		}
 	}
 
 	public void BalloonActivation(){
 		thoughtBalloons[balloonCount].GetComponent<CanvasGroup>().alpha = balloonFader[balloonCount];
 		if (switchCountDown > 0 && balloonCount < thoughtBalloons.Length) {
 			switchCountDown -= Time.deltaTime;
-		}
-		else if(balloonCount == thoughtBalloons.Length){
-			BalloonDeactivationCountDown();
 		}
 		if(switchCountDown < 0) {
 			balloonFader[balloonCount] += Time.deltaTime/faderSpeed;
@@ -54,21 +67,36 @@ public class ThoughtBalloons : MonoBehaviour {
 				switchCountDown = switchCountDownReset;
 			}
 		}
+		if(balloonCount == thoughtBalloons.Length){
+			balloonCount = thoughtBalloons.Length - 1;
+			switchText = true;
+		}
 	}
 
 	public void BalloonDeactivation(){
-		triggerBalloons = false;
-		balloonCount = 0;
 		for(int i = 0; i < balloonFader.Length; i++){
-			balloonFader[i] = 0;
+			thoughtBalloons[i].GetComponent<CanvasGroup>().alpha = 0;
 		}
 		deactivationCountDown = deactivationCountDownReset;
+		switchCountDown = switchCountDownReset;
+		balloonCount = 0;
+		curBalloonText = 0;
+		deactivate = false;
+		switchText = false;
+		triggerBalloons = false;
 	}
 
 	public void BalloonDeactivationCountDown(){
-		deactivationCountDown -= Time.deltaTime;
-		if(deactivationCountDown < 0){
-			BalloonDeactivation();
+		if(deactivate){
+			deactivationCountDown -= Time.deltaTime;
+			if(deactivationCountDown <= 0){
+				BalloonDeactivation();
+			}
 		}
+	}
+
+	public void CancelBalloons(){
+		print ("Canceled!");
+		BalloonDeactivation ();
 	}
 }
