@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour {
 	public int jumpHeight;
 	public bool mayJump;
 	public RaycastHit rayHit;
+	public GameObject walkParticle;
 
 	void Start(){
 		rb = GetComponent<Rigidbody>();
@@ -31,7 +32,10 @@ public class Movement : MonoBehaviour {
 			GetComponent<PlayerLeafActivate>().ActiveLeave(rayHit);
 		}
 		if (mayMove) {
-			Moving();
+			Moving ();
+			walkParticle.SetActive (true);
+		} else {
+			walkParticle.SetActive(false);
 		}
 		if (Physics.Raycast (transform.position, transform.forward, wallRayDis)){
 			if(mayMove)	{
@@ -47,6 +51,11 @@ public class Movement : MonoBehaviour {
 		float translation = Input.GetAxis("Vertical") * moveSpeed;
 		translation *= Time.deltaTime;
 		transform.Translate(0, 0, translation);
+		if (Input.GetAxis("Vertical") < 0) {
+			walkParticle.SetActive(true);
+		} else {
+			walkParticle.SetActive(false);
+		}
 	}
 
 	void Jump (){
