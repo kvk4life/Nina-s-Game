@@ -62,7 +62,6 @@ public class ThoughtBalloons : MonoBehaviour {
 		if(switchCountDown < 0) {
 			balloonFader[balloonCount] += Time.deltaTime/faderSpeed;
 			if(balloonFader[balloonCount] > 1){
-				print ("balloonCount = " + balloonCount);
 				balloonCount ++;
 				switchCountDown = switchCountDownReset;
 			}

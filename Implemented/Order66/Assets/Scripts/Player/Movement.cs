@@ -33,9 +33,6 @@ public class Movement : MonoBehaviour {
 		}
 		if (mayMove) {
 			Moving ();
-			walkParticle.SetActive (true);
-		} else {
-			walkParticle.SetActive(false);
 		}
 		if (Physics.Raycast (transform.position, transform.forward, wallRayDis)){
 			if(mayMove)	{
@@ -51,11 +48,6 @@ public class Movement : MonoBehaviour {
 		float translation = Input.GetAxis("Vertical") * moveSpeed;
 		translation *= Time.deltaTime;
 		transform.Translate(0, 0, translation);
-		if (Input.GetAxis("Vertical") < 0) {
-			walkParticle.SetActive(true);
-		} else {
-			walkParticle.SetActive(false);
-		}
 	}
 
 	void Jump (){
