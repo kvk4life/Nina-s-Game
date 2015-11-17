@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour {
 		gameMNGR.GetComponent<Heartscript> ().LoseHeart ();
 		if (health <= 0) {
 			gameMNGR.GetComponent<GameOver>().GameOverSwitch();
-			gameMNGR.GetComponent<Respawn> ().Respawning ();
+		//	gameMNGR.GetComponent<Respawn> ().Respawning ();
 		}
 		return health;
 	}
@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour {
 	public void Update(){
 		if(health <= 0){
 			//Game Over Scherm.
-			gameMNGR.GetComponent<Respawn> ().Respawning();
+		//	gameMNGR.GetComponent<Respawn> ().Respawning();
 		}
 	}
 	public void Respawn (){

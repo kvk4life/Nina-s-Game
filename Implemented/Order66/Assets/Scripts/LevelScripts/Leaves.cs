@@ -5,8 +5,6 @@ public class Leaves : MonoBehaviour {
 	public 	float 		leafSpeed;
 	public 	Rigidbody 	rb;
 	public 	float 		forDisRay;
-	public 	float 		dropSpeed;
-	public 	float 		yPos;
 	bool 	mayGo 		= false;
 	public	bool 		moveForward;
 	public 	Vector3 	moveDir;
@@ -35,7 +33,7 @@ public class Leaves : MonoBehaviour {
 	void LeavesGo (){
 		if(oneTime){
 			moveDir = transform.position - player.position;
-			moveDir.y = transform.position.y;
+			moveDir.y = 0;
 			oneTime = false;
 		}
 		transform.Translate(moveDir * leafSpeed * Time.deltaTime);
