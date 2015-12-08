@@ -18,16 +18,14 @@ public class Stamina : MonoBehaviour {
 	}
 	
 	public void Update(){
-		if (!superEndurance) {
-			if (Input.GetButton ("Fire1")) {
-				StaminaReduction (25);
-			}
-		}
 		Regenerate ();
 		Stabilizer ();
 	}
 	
 	public float StaminaReduction(float reduction){
+		if (superEndurance) {
+			reduction = 0;
+		}
 		stamina -= reduction;
 		return stamina;
 	}
