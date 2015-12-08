@@ -21,6 +21,7 @@ public class AntAI : MonoBehaviour
 	public int wayCounter;
 	private float playerDist;
 	private float waypointDist;
+	public float attackRange;
 	
 	
 	public enum AIStates
@@ -44,6 +45,9 @@ public class AntAI : MonoBehaviour
 	
 	void Update () 
 	{
+		if (playerDist < 10) {
+			print ("playerDist = " + playerDist);
+		}
 		Vector3 positionWay = (waypointTarget[counter].position + new Vector3 (0, 0, 0)) - transform.position;
 		
 		Quaternion rotationWay = Quaternion.LookRotation(positionWay);
@@ -104,15 +108,12 @@ public class AntAI : MonoBehaviour
 			waypointDist = Vector3.Distance (waypointTarget [counter].position, transform.position);
 		}
 		
-		if( playerDist < 5)
-		{
+		if( playerDist < 5 && playerDist > attackRange){
 			aiStates = AIStates.Follow;
 			moveTime = 10;
-			
-			if(playerDist < 2)
-			{
-				aiStates = AIStates.Attacking;
-			}
+		}
+		else if(playerDist < attackRange){
+			aiStates = AIStates.Attacking;
 		}
 		
 		else
