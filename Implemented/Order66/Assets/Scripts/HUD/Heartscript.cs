@@ -29,13 +29,14 @@ public class Heartscript : MonoBehaviour {
 
 	}
 
-	public void LoseHeart (){
-		if (hearts[maxLength-1] > 0) {
+	public void LoseHeart (float loseAmount){
+		print ("Lose mij damage = " + loseAmount);
+		for(int i = 0; i < loseAmount ; i++){
 			if (hearts[h] >= 1) {
+				print ("aauw!");
 				hearts[h] -= 1;
 			} 
-			else 
-		{
+			else {
 				h += 1;
 				hearts[h] -= 1;
 			}
@@ -43,20 +44,17 @@ public class Heartscript : MonoBehaviour {
 		HeartCheck();
 	}
 
-	public void GainHeart(){
-		if (hearts[0] < 2) {
-			print (h);
+	public void GainHeart(float gainAmount){
+		for(int i = 0; i < gainAmount ; i++){
 			if (hearts[h] <= 1) {
-				print(h);
 				hearts[h] += 1;
 			} 
 			else {
-				print ("3");
 				h -= 1;
 				hearts[h] += 1;
 			}
-		}
-		HeartCheck();
+			HeartCheck();
+		}	
 	}
 
 	void HeartCheck (){

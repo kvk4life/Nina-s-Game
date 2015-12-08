@@ -9,6 +9,7 @@ public class BreathHolding : MonoBehaviour {
 	public float regenRate;
 	public float reduceRate;
 	public float noBreathDamage;
+	public float noBreathDamageRate;
 	float nextReduce;
 	float nextRegen;
 	float minBreath;
@@ -51,8 +52,11 @@ public class BreathHolding : MonoBehaviour {
 		if (Time.time > reduceRate + nextReduce && holdBreath) {
 			curBreath -= breathReduce;
 			nextReduce = Time.time;
-			if (curBreath < minBreath + 1) {
+		}
+		if (curBreath < minBreath + 1) {
+			if(Time.time > noBreathDamageRate + nextReduce){
 				GetComponent<PlayerHealth> ().Damage (noBreathDamage);
+				nextReduce = Time.time;
 			}
 		}
 	}

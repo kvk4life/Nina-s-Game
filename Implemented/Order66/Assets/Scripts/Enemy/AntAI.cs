@@ -3,11 +3,9 @@ using System.Collections;
 
 public class AntAI : MonoBehaviour 
 {
-	public GameObject[] wayPoints;
 	public Transform playerTarget;
 	public Transform[]  waypointTarget;
 	public int moveSpeed;
-	public Rigidbody rb;
 	public AIStates aiStates;
 	public int counter;
 	public int wayLenght;

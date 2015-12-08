@@ -3,37 +3,40 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {
 	public float health;
-	private float beginHealth;
+	public float maxHealth;
 	public GameObject gameMNGR;
-
-	void Start (){
-		beginHealth = health;
+	public bool immortal;
+	
+	public void Start(){
+		if(health == 0){
+			health = maxHealth;
+		}
 	}
-
+	
 	public float Damage (float damage){
-		health -= damage;
-		gameMNGR.GetComponent<Heartscript> ().LoseHeart ();
-		if (health <= 0) {
-			gameMNGR.GetComponent<GameOver>().GameOverSwitch();
-		//	gameMNGR.GetComponent<Respawn> ().Respawning ();
+		if (!immortal) {
+			if (health > 0) {
+				health -= damage;
+				gameMNGR.GetComponent<Heartscript> ().LoseHeart (damage);
+			}
+			if (health <= 0) {
+				gameMNGR.GetComponent<GameOver> ().gameOver = true;
+			}
+		}
+		else {
+			health = maxHealth;
 		}
 		return health;
 	}
-
-	public void Update(){
-		if(health <= 0){
-			//Game Over Scherm.
-		//	gameMNGR.GetComponent<Respawn> ().Respawning();
-		}
+	
+	public void Respawned (){
+		Heal (maxHealth);
 	}
-	public void Respawn (){
-		health = beginHealth;
-	}
-
+	
 	public float Heal (float heal){
-		if(health <= 5){
+		if(health < maxHealth){
 			health += heal;
-			gameMNGR.GetComponent<Heartscript>().GainHeart();
+			gameMNGR.GetComponent<Heartscript>().GainHeart(heal);
 		}
 		return health;
 	}

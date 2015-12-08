@@ -8,42 +8,50 @@ public class Stamina : MonoBehaviour {
 	public float staminaRegen;
 	public float regenRate;
 	float nextRegen;
+	public float blockBonusPenalty;
 	public bool superEndurance;
-
+	public bool mayBlock;
+	
 	public void Start(){
 		minStamina = 0;
 		stamina = maxStamina;
 	}
-
+	
 	public void Update(){
-		Regenerate ();
-		Stabilizer ();
-		if(!superEndurance){
-			if (GetComponent<Defense> ().blocken) {
-				StaminaReduction(GetComponent<Defense>().minStaminaReq);
+		if (!superEndurance) {
+			if (Input.GetButton ("Fire1")) {
+				StaminaReduction (25);
 			}
 		}
+		Regenerate ();
+		Stabilizer ();
 	}
-
+	
 	public float StaminaReduction(float reduction){
-		stamina -= reduction*Time.deltaTime;
+		stamina -= reduction;
 		return stamina;
 	}
-
+	
 	public void Regenerate(){
-		if (stamina < maxStamina) {
+		if (stamina < maxStamina && !GetComponent<Defense>().blocken) {
 			if (Time.time > regenRate + nextRegen) {
 				stamina += staminaRegen;
 				nextRegen = Time.time;
 			}
 		}
+		else if(stamina < maxStamina && GetComponent<Defense>().blocken && mayBlock){
+			if (Time.time > regenRate + nextRegen) {
+				stamina += staminaRegen / blockBonusPenalty;
+				nextRegen = Time.time;
+			}
+		}
 	}
-
+	
 	public void Stabilizer(){
 		if (stamina > maxStamina) {
 			stamina = maxStamina;
 		}
-		if(stamina < minStamina){
+		if(stamina < minStamina + 1){
 			stamina = minStamina;
 		}
 	}
