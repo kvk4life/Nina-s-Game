@@ -45,9 +45,6 @@ public class AntAI : MonoBehaviour
 	
 	void Update () 
 	{
-		if (playerDist < 10) {
-			print ("playerDist = " + playerDist);
-		}
 		Vector3 positionWay = (waypointTarget[counter].position + new Vector3 (0, 0, 0)) - transform.position;
 		
 		Quaternion rotationWay = Quaternion.LookRotation(positionWay);
