@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour {
 	public Rigidbody rb;
 	public int jumpCounter;
 	public int jumpHeight;
+	public float groundRayDis;
 	public bool mayJump;
 	public RaycastHit rayHit;
 	public GameObject walkParticle;
@@ -21,13 +22,13 @@ public class Movement : MonoBehaviour {
 	void Update() {
 		Rotation();
 		if (Input.GetButtonDown ("Jump")) {
-			if (Physics.Raycast(transform.position, -Vector3.up,out rayHit, jumpCheck)){
+			if (Physics.Raycast(transform.position, -Vector3.up + new Vector3(0, groundRayDis, 0),out rayHit, jumpCheck)){
 				jumpCounter = 0;
 				GetComponent<PlayerLeafActivate>().ActiveLeave(rayHit);
 			}
 			Jump();
 		}
-		if (Physics.Raycast(transform.position, -Vector3.up,out rayHit, jumpCheck)){
+		if (Physics.Raycast(transform.position, -Vector3.up + new Vector3(0, groundRayDis, 0),out rayHit, jumpCheck)){
 			jumpCounter = 0;
 			GetComponent<PlayerLeafActivate>().ActiveLeave(rayHit);
 		}
