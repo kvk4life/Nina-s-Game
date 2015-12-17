@@ -11,30 +11,30 @@ public class Needle : WeaponEffect
 	public float critChance;
 	public int critDamage;
 	public int bleedTime;
-
-
-
+	
+	
+	
 	void Update ()
 	{
 		weaponAttack = attackPower;
-
+		
 		if(Input.GetButtonDown("b"))
 		{
 			BleedAttack();
 		}
-
+		
 		if(Input.GetButtonDown("c"))
 		{
 			CriticalAttack();
 		}
-
+		
 	}
-
+	
 	void BleedAttack ()
 	{
 		Bleed bleedScript = enemy.GetComponent<Bleed> ();
 		WeaponSwitch switchScript = GetComponent<WeaponSwitch>();
-
+		
 		if(needleBleed)
 		{
 			if(switchScript.weaponNumber == 2)
@@ -48,16 +48,21 @@ public class Needle : WeaponEffect
 			}
 		}
 	}
-
+	
 	void CriticalAttack()
 	{
-		EnemyHealth healthScript = enemy.GetComponent<EnemyHealth> ();
-		randomNum = (Random.Range(0, 100));
-
-		if(randomNum < critChance)
+		WeaponSwitch switchScript = GetComponent<WeaponSwitch>();
+		
+		if(switchScript.weaponNumber == 2)
 		{
-			critDamage = weaponAttack *= 2;
-			healthScript.health-= critDamage;
+			EnemyHealth healthScript = enemy.GetComponent<EnemyHealth> ();
+			randomNum = (Random.Range(0, 100));
+			
+			if(randomNum < critChance)
+			{
+				critDamage = weaponAttack *= 2;
+				healthScript.health-= critDamage;
+			}
 		}
 	}
 }
