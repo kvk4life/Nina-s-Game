@@ -60,28 +60,28 @@ public class LeafMove : MonoBehaviour
 			}
 		}
 
-		if(other.transform.tag == "Platform")
-		{
-			currentPosition = leaf.transform.position;
-
-			if(secondTimer <= 0)
-			{
-				if(check == 0)
-				{
-					check++;
-					secondTimer = 2;
-				}
-				else
-				{
-					//currentRotation.y = rotation;
-					//leaf.transform.rotation = currentRotation;
-					check--;
-
-					secondTimer = 2;
-				}
-			}
-				move = false;
-		}
+//		if(other.transform.tag == "Platform")
+//		{
+//			currentPosition = leaf.transform.position;
+//
+//			if(secondTimer <= 0)
+//			{
+//				if(check == 0)
+//				{
+//					check++;
+//					secondTimer = 2;
+//				}
+//				else
+//				{
+//					//currentRotation.y = rotation;
+//					//leaf.transform.rotation = currentRotation;
+//					check--;
+//
+//					secondTimer = 2;
+//				}
+//			}
+//				move = false;
+//		}
 	}
 
 	void Mover()
@@ -89,11 +89,11 @@ public class LeafMove : MonoBehaviour
 		//leaf.transform.Translate (0, 0, moveSpeed * Time.deltaTime);
 		if(check == 1)
 		{
-			leaf.transform.position += this.moveSpeed * -transform.forward * (float)Time.deltaTime;
+			leaf.transform.position += this.moveSpeed * -transform.right * (float)Time.deltaTime;
 
 			player.transform.position = currentPlayerPosision;
 			
-			player.transform.position += this.moveSpeed * -transform.forward * (float)Time.deltaTime;
+			player.transform.position += this.moveSpeed * -transform.right * (float)Time.deltaTime;
 			
 			currentPlayerPosision = player.transform.position;
 
@@ -104,15 +104,13 @@ public class LeafMove : MonoBehaviour
 		}
 		else
 		{
-			leaf.transform.position += this.moveSpeed * transform.forward * (float)Time.deltaTime;
+			leaf.transform.position += this.moveSpeed * transform.right * (float)Time.deltaTime;
 
 			player.transform.position = currentPlayerPosision;
 			
-			player.transform.position += this.moveSpeed * transform.forward * (float)Time.deltaTime;
+			player.transform.position += this.moveSpeed * transform.right * (float)Time.deltaTime;
 			
 			currentPlayerPosision = player.transform.position;
 		}
-
-
 	}
 }
