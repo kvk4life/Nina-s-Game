@@ -21,20 +21,40 @@ public class Movement : MonoBehaviour {
 
 	void Update() {
 		Rotation();
+		//JumpCounterCheckerHarold ();
+		MayMoveChecker ();
+//		if (Physics.Raycast(transform.position, -Vector3.up + new Vector3(0, groundRayDis, 0),out rayHit, jumpCheck)){
+//			jumpCounter = 0;
+//			GetComponent<PlayerLeafActivate>().ActiveLeave(rayHit);
+//		}
+		if (mayMove) {
+			Moving ();
+		}
 		if (Input.GetButtonDown ("Jump")) {
-			if (Physics.Raycast(transform.position, -Vector3.up + new Vector3(0, groundRayDis, 0),out rayHit, jumpCheck)){
-				jumpCounter = 0;
-				GetComponent<PlayerLeafActivate>().ActiveLeave(rayHit);
-			}
 			Jump();
 		}
+	}
+
+	void OnCollisionEnter(Collision col){
+		if (col.transform.tag == "Platform") {
+			jumpCounter = 0;
+		} 
+	}
+
+	void JumpCounterCheckerHarold(){
 		if (Physics.Raycast(transform.position, -Vector3.up + new Vector3(0, groundRayDis, 0),out rayHit, jumpCheck)){
 			jumpCounter = 0;
 			GetComponent<PlayerLeafActivate>().ActiveLeave(rayHit);
 		}
-		if (mayMove) {
-			Moving ();
+		else{
+			jumpCounter = 1;
 		}
+		if (Input.GetButtonDown ("Jump")) {
+			Jump();
+		}
+	}
+
+	void MayMoveChecker(){
 		if (Physics.Raycast (transform.position, transform.forward, wallRayDis)){
 			if(mayMove)	{
 				mayMove = false;
@@ -42,6 +62,23 @@ public class Movement : MonoBehaviour {
 		}
 		else{
 			mayMove = true;
+		}
+	}
+
+	void FixedUpdate(){
+		CameraControler ();
+	}
+
+	void CameraControler(){
+		if(Input.GetButton("Horizontal"))
+		{
+		}
+		else
+		{
+			if(Input.GetMouseButton(0) || Input.GetButton("Vertical")) 
+			{
+				transform.rotation = Quaternion.Euler(0,Camera.main.transform.eulerAngles.y,0);
+			} 
 		}
 	}
 

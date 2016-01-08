@@ -21,6 +21,7 @@ public class LeafMove : MonoBehaviour
 		rotation = leaf.transform.rotation.y;
 		currentPosition = leaf.transform.position;
 		timer = 0;
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	void Update () 

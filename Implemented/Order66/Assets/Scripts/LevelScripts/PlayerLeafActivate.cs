@@ -6,7 +6,7 @@ public class PlayerLeafActivate : MonoBehaviour {
 	public RaycastHit rayHit;
 
 	public void ActiveLeave (RaycastHit trigger){
-		if(trigger.transform.tag == "Blaadje"){
+		if(trigger.transform.tag == "Leaf"){
 			trigger.transform.GetComponent<Leaves>().moveForward = true;
 			transform.SetParent(trigger.transform,true);
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
