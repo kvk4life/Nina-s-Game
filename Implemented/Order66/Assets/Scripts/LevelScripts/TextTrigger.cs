@@ -4,14 +4,14 @@ using System.Collections;
 public class TextTrigger : MonoBehaviour {
 	public int balloonTextMin;
 	public int balloonTextMax;
-	private GameObject menu;
+	private GameObject subtitleHolder;
 	
 	public void OnTriggerEnter(Collider col){
 		if(col.transform.tag == "Player"){
-			menu = GameObject.Find ("GameManager");
-			menu.GetComponent<ThoughtBalloons>().triggerBalloons = true;
-			menu.GetComponent<ThoughtBalloons>().curBalloonText = balloonTextMin;
-			menu.GetComponent<ThoughtBalloons>().curBalloonTextMax = balloonTextMax;
+			subtitleHolder = GameObject.Find ("SubtitleMng");
+			subtitleHolder.GetComponent<Subtitles>().triggerSubtitles = true;
+			subtitleHolder.GetComponent<Subtitles>().curBalloonText = balloonTextMin;
+			subtitleHolder.GetComponent<Subtitles>().curBalloonTextMax = balloonTextMax;
 		}
 	}
 }
