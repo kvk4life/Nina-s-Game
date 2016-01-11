@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: c9241e48706610946bf11afc5f36055b
+timeCreated: 1452503217
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: BeamGenerator
+    100004: Box001
+    100006: Camera
+    100008: Coil003
+    100010: Coil2
+    100012: Front_Wire_R_1
+    100014: Knob_Large
+    100016: Knob_Small
+    100018: Knob_Small001
+    100020: Light_Cable
+    100022: Socket
+    100024: Stand
+    100026: Twisty_Knob_Body
+    100028: Twisty_Knob_Knob
+    100030: Twisty_Knob_Window
+    400000: //RootNode
+    400002: BeamGenerator
+    400004: Box001
+    400006: Camera
+    400008: Coil003
+    400010: Coil2
+    400012: Front_Wire_R_1
+    400014: Knob_Large
+    400016: Knob_Small
+    400018: Knob_Small001
+    400020: Light_Cable
+    400022: Socket
+    400024: Stand
+    400026: Twisty_Knob_Body
+    400028: Twisty_Knob_Knob
+    400030: Twisty_Knob_Window
+    2300000: BeamGenerator
+    2300002: Box001
+    2300004: Camera
+    2300006: Coil003
+    2300008: Coil2
+    2300010: Front_Wire_R_1
+    2300012: Knob_Large
+    2300014: Knob_Small
+    2300016: Knob_Small001
+    2300018: Light_Cable
+    2300020: Socket
+    2300022: Stand
+    2300024: Twisty_Knob_Body
+    2300026: Twisty_Knob_Knob
+    2300028: Twisty_Knob_Window
+    3300000: BeamGenerator
+    3300002: Box001
+    3300004: Camera
+    3300006: Coil003
+    3300008: Coil2
+    3300010: Front_Wire_R_1
+    3300012: Knob_Large
+    3300014: Knob_Small
+    3300016: Knob_Small001
+    3300018: Light_Cable
+    3300020: Socket
+    3300022: Stand
+    3300024: Twisty_Knob_Body
+    3300026: Twisty_Knob_Knob
+    3300028: Twisty_Knob_Window
+    4300000: Stand
+    4300002: Camera
+    4300004: Light_Cable
+    4300006: Knob_Small
+    4300008: Knob_Large
+    4300010: Twisty_Knob_Body
+    4300012: Twisty_Knob_Window
+    4300014: Twisty_Knob_Knob
+    4300016: Socket
+    4300018: Front_Wire_R_1
+    4300020: BeamGenerator
+    4300022: Coil2
+    4300024: Knob_Small001
+    4300026: Coil003
+    4300028: Box001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
