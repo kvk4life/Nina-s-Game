@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class SkillTree : MonoBehaviour {
-	public GameObject skillMenu;
+	public GameObject gameMng;
 	public bool skillMenuSwitch;
 	public Sprite filledExpBar;
 	public Sprite tempExpBar;
 	public Sprite emptyExpBar;
 	public int skillPointPool;
+	public int spendSkillPoints;
 	public int tempMeleePoints;
 	public int tempShieldPoints;
 	public int tempStaminaPoints;
@@ -37,7 +38,6 @@ public class SkillTree : MonoBehaviour {
 	public Canvas expCanvas;
 
 	public void Start(){
-		skillMenuSwitch = false;
 		slotWidth = barWidth / maxBarPoints;
 		meleeSkillPoints = new List<GameObject> ();
 		shieldSkillPoints = new List<GameObject> ();
@@ -48,17 +48,6 @@ public class SkillTree : MonoBehaviour {
 		StaminaBarCreator ();
 		HealthBarCreator ();
 		staminaRegenRate = GetComponent<Stamina> ().regenRate;
-	}
-
-	public void Update(){
-		SkillMenuSwitcher ();
-	}
-
-	public void SkillMenuSwitcher(){
-		if(Input.GetButtonDown("SkillMenu")){
-			skillMenuSwitch = !skillMenuSwitch;
-		}
-		skillMenu.SetActive(skillMenuSwitch);
 	}
 
 	public void FillTheBars(){
@@ -94,6 +83,7 @@ public class SkillTree : MonoBehaviour {
 		if(skillPointPool > 0 && tempMeleePoints < maxBarPoints){
 			tempMeleePoints++;
 			skillPointPool--;
+			spendSkillPoints++;
 			TempMeleeExpSlotAdded();
 		}
 	}
@@ -102,6 +92,7 @@ public class SkillTree : MonoBehaviour {
 		if(skillPointPool > 0 && tempShieldPoints < maxBarPoints){
 			tempShieldPoints++;
 			skillPointPool--;
+			spendSkillPoints++;
 			TempShieldExpSlotAdded();
 		}
 	}
@@ -110,6 +101,7 @@ public class SkillTree : MonoBehaviour {
 		if(skillPointPool > 0 && tempShieldPoints < maxBarPoints){
 			tempStaminaPoints++;
 			skillPointPool--;
+			spendSkillPoints++;
 			TempStaminaExpSlotAdded();
 		}
 	}
@@ -118,6 +110,7 @@ public class SkillTree : MonoBehaviour {
 		if(skillPointPool > 0 && tempShieldPoints < maxBarPoints){
 			tempHealthPoints++;
 			skillPointPool--;
+			spendSkillPoints++;
 			TempHealthExpSlotAdded();
 		}
 	}
@@ -135,6 +128,7 @@ public class SkillTree : MonoBehaviour {
 		if(tempMeleePoints > 0){
 			tempMeleePoints--;
 			skillPointPool++;
+			spendSkillPoints--;
 			TempMeleeExpSlotRemoval();
 		}
 	}
@@ -143,6 +137,7 @@ public class SkillTree : MonoBehaviour {
 		if(tempShieldPoints > 0){
 			tempShieldPoints--;
 			skillPointPool++;
+			spendSkillPoints--;
 			TempShieldExpSlotRemoval();
 		}
 	}
@@ -151,6 +146,7 @@ public class SkillTree : MonoBehaviour {
 		if(tempHealthPoints > 0){
 			tempHealthPoints--;
 			skillPointPool++;
+			spendSkillPoints--;
 			TempHealthExpSlotRemoval();
 		}
 	}
@@ -159,6 +155,7 @@ public class SkillTree : MonoBehaviour {
 		if(tempStaminaPoints > 0){
 			tempStaminaPoints--;
 			skillPointPool++;
+			spendSkillPoints--;
 			TempStaminaExpSlotRemoval();
 		}
 	}
@@ -199,7 +196,6 @@ public class SkillTree : MonoBehaviour {
 			if(i < meleePoints + tempMeleePoints){
 				if(meleeSkillPoints[i].GetComponent<Image>().sprite == emptyExpBar){
 					meleeSkillPoints[i].GetComponent<Image>().sprite = tempExpBar;
-					//Extra Damage hier added
 				}
 			}
 			else{
@@ -234,7 +230,7 @@ public class SkillTree : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void TempHealthExpSlotRemoval(){
 		for(int i = maxBarPoints - 1; i > -1; i--){
 			if(healthSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
@@ -243,7 +239,7 @@ public class SkillTree : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void MeleeExpSlotChecker(){
 		for(int i = 0; i < maxBarPoints; i++){
 			if(i < meleePoints){
@@ -260,13 +256,12 @@ public class SkillTree : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void TempShieldExpSlotAdded(){
 		for(int i = 0; i < maxBarPoints; i++){
 			if(i < shieldPoints + tempShieldPoints){
 				if(shieldSkillPoints[i].GetComponent<Image>().sprite == emptyExpBar){
 					shieldSkillPoints[i].GetComponent<Image>().sprite = tempExpBar;
-					//Extra Damage hier added
 				}
 			}
 			else{
@@ -290,13 +285,12 @@ public class SkillTree : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void TempStaminaExpSlotAdded(){
 		for(int i = 0; i < maxBarPoints; i++){
 			if(i < staminaPoints + tempStaminaPoints){
 				if(staminaSkillPoints[i].GetComponent<Image>().sprite == emptyExpBar){
 					staminaSkillPoints[i].GetComponent<Image>().sprite = tempExpBar;
-					//Extra Damage hier added
 				}
 			}
 			else{
@@ -304,7 +298,7 @@ public class SkillTree : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void StaminaExpSlotChecker(){
 		for(int i = 0; i < maxBarPoints; i++){
 			if(i < staminaPoints){
@@ -326,13 +320,12 @@ public class SkillTree : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void TempHealthExpSlotAdded(){
 		for(int i = 0; i < maxBarPoints; i++){
 			if(i < healthPoints + tempHealthPoints){
 				if(healthSkillPoints[i].GetComponent<Image>().sprite == emptyExpBar){
 					healthSkillPoints[i].GetComponent<Image>().sprite = tempExpBar;
-					//Extra Damage hier added
 				}
 			}
 			else{
@@ -340,14 +333,16 @@ public class SkillTree : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void HealthExpSlotChecker(){
 		for(int i = 0; i < maxBarPoints; i++){
 			if(i < healthPoints){
 				if(healthSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
 					healthSkillPoints[i].GetComponent<Image>().sprite = filledExpBar;
-					//Extra health hier added
-					GetComponent<PlayerHealth>().maxHealth++;
+					//Verhoog maxHealth hier
+					gameMng.GetComponent<Heartscript>().maxLength++;
+					gameMng.GetComponent<Heartscript>().NewBar();
+					GetComponent<PlayerHealth>().MaxHealthConnect();
 				}
 			}
 			else{
@@ -355,11 +350,11 @@ public class SkillTree : MonoBehaviour {
 			}
 			if(healthPoints == maxBarPoints){
 				//Add de maxbonus effect hier
-
+				GetComponent<HealthShield>().ActivateShield();
 			}
 		}
 	}
-
+	
 	public void MeleeBarCreator(){
 		for(int i = 0; i < maxBarPoints; i++){
 			GameObject createdSlot = GameObject.Instantiate(expSlotPrefab);
@@ -372,7 +367,7 @@ public class SkillTree : MonoBehaviour {
 			meleeSkillPoints.Add(createdSlot);
 		}
 	}
-
+	
 	public void ShieldBarCreator(){
 		for(int i = 0; i < maxBarPoints; i++){
 			GameObject createdSlot = GameObject.Instantiate(expSlotPrefab);
@@ -385,7 +380,7 @@ public class SkillTree : MonoBehaviour {
 			shieldSkillPoints.Add(createdSlot);
 		}
 	}
-
+	
 	public void StaminaBarCreator(){
 		for(int i = 0; i < maxBarPoints; i++){
 			GameObject createdSlot = GameObject.Instantiate(expSlotPrefab);
@@ -398,7 +393,7 @@ public class SkillTree : MonoBehaviour {
 			staminaSkillPoints.Add(createdSlot);
 		}
 	}
-
+	
 	public void HealthBarCreator(){
 		for(int i = 0; i < maxBarPoints; i++){
 			GameObject createdSlot = GameObject.Instantiate(expSlotPrefab);

@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class HUDControl : MonoBehaviour {
+	public GameObject player;
 	public enum HudState{
 		PauseMenu,
 		OptionMenu,
@@ -20,6 +21,26 @@ public class HUDControl : MonoBehaviour {
 		}
 	}
 
+	public void Update(){
+		EscButton ();
+		if(Input.GetButtonDown("Inventory")){
+			ButtonSwitchSkillTree(true);
+		}
+	}
+
+	public void ButtonSwitchSkillTree(bool withKey){
+		if (hudState == HudState.SkillsMenu && !withKey) {
+			player.GetComponent<SkillTree>().TempSkillRemoval();
+			SwitchHudState (HudState.PauseMenu);
+		} else if (hudState == HudState.SkillsMenu && withKey) {
+			player.GetComponent<SkillTree>().TempSkillRemoval();
+			SwitchHudState (HudState.Play);
+		}
+		else {
+			SwitchHudState (HudState.SkillsMenu);
+		}
+	}
+
 	public void SwitchHudState(HudState newState){
 		hudState = newState;
 		switch(hudState){
@@ -30,7 +51,7 @@ public class HUDControl : MonoBehaviour {
 				SelectHudState("OptionsPanel");	
 			break;
 			case HudState.SkillsMenu:
-				SelectHudState("SkillIconsPH");	
+				SelectHudState("SkillTreeHud");	
 			break;
 			case HudState.Play:
 				SelectHudState("PlayingHud");	
@@ -68,10 +89,6 @@ public class HUDControl : MonoBehaviour {
 			Time.timeScale = 1f;
 			Cursor.visible = false;
 		}
-	}
-
-	public void Update(){
-		EscButton ();
 	}
 
 	public void EscButton(){

@@ -16,7 +16,7 @@ public class Heartscript : MonoBehaviour
 		NewBar ();
 		HudCheck ();
 	}
-	void HudCheck ()
+	public void HudCheck ()
 	{
 		for (int i = 0; i < maxLength; i++) 
 		{
@@ -29,6 +29,7 @@ public class Heartscript : MonoBehaviour
 	{
 		hearts = new int[maxLength];
 		heartHud = new Sprite[maxLength];
+		h = maxLength-1;
 		
 		for (int i = 0; i < maxLength; i++) 
 		{
@@ -43,6 +44,7 @@ public class Heartscript : MonoBehaviour
 		{
 			spriteList[i].SetActive(false);
 		}
+		HudCheck ();
 	}
 	
 	public void LoseHeart (float loseAmount)
@@ -50,7 +52,6 @@ public class Heartscript : MonoBehaviour
 		print ("Lose mij damage = " + loseAmount);
 		
 		for(int i = 0; i < loseAmount ; i++){
-			
 			if (hearts[h] >= 1) 
 			{
 				print ("aauw!");
@@ -59,7 +60,7 @@ public class Heartscript : MonoBehaviour
 			
 			else 
 			{
-				h += 1;
+				h -= 1;
 				hearts[h] -= 1;
 			}
 		}
@@ -79,7 +80,7 @@ public class Heartscript : MonoBehaviour
 			} 
 			else 
 			{
-				h -= 1;
+				h += 1;
 				hearts[h] += 1;
 			}
 			
