@@ -3,6 +3,7 @@ using System.Collections;
 
 public class HUDControl : MonoBehaviour {
 	public GameObject player;
+	public GameObject camerai;
 	public enum HudState{
 		PauseMenu,
 		OptionMenu,
@@ -84,10 +85,12 @@ public class HUDControl : MonoBehaviour {
 		if(newEffect != "PlayingHud"){
 			Time.timeScale = 0f;
 			Cursor.visible = true;
+			camerai.GetComponent<CamController>().inPlayingHud = false;
 		}
 		else{
 			Time.timeScale = 1f;
 			Cursor.visible = false;
+			camerai.GetComponent<CamController>().inPlayingHud = true;
 		}
 	}
 

@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class CamController : MonoBehaviour {
+	public bool			inPlayingHud;
 	public	Transform	camTarget;
 	private float		x = 0.0f;
 	private  float		y = 0.0f;
@@ -30,40 +31,42 @@ public class CamController : MonoBehaviour {
 	}
 	
 	void LateUpdate () {
-		//if (Input.GetMouseButton(0)) {
-			x += Input.GetAxis("Mouse X") * mouseXSpeed;
-			y -= Input.GetAxis("Mouse Y") * mouseYSpeed;
-		//}
-		if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) {
-			float targetRotationAngle = camTarget.eulerAngles.y;
-			float cameraRotationAngle = transform.eulerAngles.y;
-			x = Mathf.LerpAngle(cameraRotationAngle, targetRotationAngle, lerpRate * Time.deltaTime);
-		}
-		y = ClampAngle(y, -10, 40);
-
-		Quaternion rotation = Quaternion.Euler(y, x, 0);
-
-		desiredDistance -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * zoomRate * Mathf.Abs(desiredDistance);
-		desiredDistance =ClampAngle(desiredDistance, minViewDistance, maxViewDistance);
-		correctedDistance = desiredDistance;
-		if (camTarget != null) {
-			Vector3 position = camTarget.position - (rotation * Vector3.forward * desiredDistance);
-		
-
-			RaycastHit collisionHit;
-			bool isCorrected = false;
-			Vector3 cameraTargetPosition = new Vector3 (camTarget.position.x, camTarget.position.y + camTargetHeight, camTarget.position.z);
-			if (Physics.Linecast (cameraTargetPosition, position, out collisionHit)) {
-				position = collisionHit.point;
-				correctedDistance = Vector3.Distance (cameraTargetPosition, position);
-				isCorrected = true;
+		if(inPlayingHud){
+			//if (Input.GetMouseButton(0)) {
+				x += Input.GetAxis("Mouse X") * mouseXSpeed;
+				y -= Input.GetAxis("Mouse Y") * mouseYSpeed;
+			//}
+			if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) {
+				float targetRotationAngle = camTarget.eulerAngles.y;
+				float cameraRotationAngle = transform.eulerAngles.y;
+				x = Mathf.LerpAngle(cameraRotationAngle, targetRotationAngle, lerpRate * Time.deltaTime);
 			}
+			y = ClampAngle(y, -10, 40);
 
-			currentDistance = !isCorrected || correctedDistance > currentDistance ? Mathf.Lerp (currentDistance, correctedDistance, Time.deltaTime * zoomRate) : correctedDistance;
-			position = camTarget.position - (rotation * Vector3.forward * currentDistance + new Vector3 (0, camTargetHeight, 0));
+			Quaternion rotation = Quaternion.Euler(y, x, 0);
 
-			transform.rotation = rotation;
-			transform.position = position;
+			desiredDistance -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * zoomRate * Mathf.Abs(desiredDistance);
+			desiredDistance =ClampAngle(desiredDistance, minViewDistance, maxViewDistance);
+			correctedDistance = desiredDistance;
+			if (camTarget != null) {
+				Vector3 position = camTarget.position - (rotation * Vector3.forward * desiredDistance);
+			
+
+				RaycastHit collisionHit;
+				bool isCorrected = false;
+				Vector3 cameraTargetPosition = new Vector3 (camTarget.position.x, camTarget.position.y + camTargetHeight, camTarget.position.z);
+				if (Physics.Linecast (cameraTargetPosition, position, out collisionHit)) {
+					position = collisionHit.point;
+					correctedDistance = Vector3.Distance (cameraTargetPosition, position);
+					isCorrected = true;
+				}
+
+				currentDistance = !isCorrected || correctedDistance > currentDistance ? Mathf.Lerp (currentDistance, correctedDistance, Time.deltaTime * zoomRate) : correctedDistance;
+				position = camTarget.position - (rotation * Vector3.forward * currentDistance + new Vector3 (0, camTargetHeight, 0));
+
+				transform.rotation = rotation;
+				transform.position = position;
+			}
 		}
 	}
 
