@@ -49,7 +49,12 @@ public class PlayerHealth : MonoBehaviour {
 	}
 	
 	public float Heal (float heal){
-		if(health < maxHealth){
+		if(health + heal > maxHealth){
+			float leftoverHealth = maxHealth - health;
+			health = maxHealth;
+			gameMNGR.GetComponent<Heartscript>().GainHeart(leftoverHealth);
+		}
+		else if(health < maxHealth){
 			health += heal;
 			gameMNGR.GetComponent<Heartscript>().GainHeart(heal);
 		}

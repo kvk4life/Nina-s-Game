@@ -23,9 +23,11 @@ public class SkillTree : MonoBehaviour {
 	public float barWidth;
 	private float slotWidth;
 	public float slotHeight;
+	public int maxDamage;
 	public float maxStaminaBonus;
 	private float staminaRegenRate;
 	public float minStaminaRegenBonus;
+	private float staminaCostHalver;
 	public GameObject expSlotPrefab;
 	public GameObject meleeSlotParent;
 	public GameObject shieldSlotParent;
@@ -48,6 +50,7 @@ public class SkillTree : MonoBehaviour {
 		StaminaBarCreator ();
 		HealthBarCreator ();
 		staminaRegenRate = GetComponent<Stamina> ().regenRate;
+		staminaCostHalver = GetComponent<PlayerAttack>().staminaCost/2;
 	}
 
 	public void FillTheBars(){
@@ -98,7 +101,7 @@ public class SkillTree : MonoBehaviour {
 	}
 
 	public void AddTempSkillPointStamina(){
-		if(skillPointPool > 0 && tempShieldPoints < maxBarPoints){
+		if(skillPointPool > 0 && tempStaminaPoints < maxBarPoints){
 			tempStaminaPoints++;
 			skillPointPool--;
 			spendSkillPoints++;
@@ -107,7 +110,7 @@ public class SkillTree : MonoBehaviour {
 	}
 
 	public void AddTempSkillPointHealth(){
-		if(skillPointPool > 0 && tempShieldPoints < maxBarPoints){
+		if(skillPointPool > 0 && tempHealthPoints < maxBarPoints){
 			tempHealthPoints++;
 			skillPointPool--;
 			spendSkillPoints++;
@@ -241,19 +244,15 @@ public class SkillTree : MonoBehaviour {
 	}
 	
 	public void MeleeExpSlotChecker(){
+		int damageIncrease = maxDamage/maxBarPoints;
 		for(int i = 0; i < maxBarPoints; i++){
-			if(i < meleePoints){
-				if(meleeSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
-					meleeSkillPoints[i].GetComponent<Image>().sprite = filledExpBar;
-					//Extra Damage hier added
-				}
+			if(meleeSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
+				meleeSkillPoints[i].GetComponent<Image>().sprite = filledExpBar;
+				GetComponent<PlayerAttack>().damage += damageIncrease;
 			}
-			else{
-				break;
-			}
-			if(meleePoints == maxBarPoints){
-				//Add de maxbonus effect hier
-			}
+		}
+		if(meleePoints == maxBarPoints){
+			GetComponent<PlayerAttack>().staminaCost = staminaCostHalver;
 		}
 	}
 	
@@ -271,18 +270,12 @@ public class SkillTree : MonoBehaviour {
 	}
 	public void ShieldExpSlotChecker(){
 		for(int i = 0; i < maxBarPoints; i++){
-			if(i < shieldPoints){
-				if(shieldSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
-					shieldSkillPoints[i].GetComponent<Image>().sprite = filledExpBar;
-					//Minder stamina kost hier added
-				}
+			if(shieldSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
+				shieldSkillPoints[i].GetComponent<Image>().sprite = filledExpBar;
 			}
-			else{
-				break;
-			}
-			if(shieldPoints == maxBarPoints){
-				//Add de maxbonus effect hier
-			}
+		}
+		if(shieldPoints == maxBarPoints){
+			GetComponent<Defense>().shieldMaxed = true;
 		}
 	}
 	
@@ -301,23 +294,16 @@ public class SkillTree : MonoBehaviour {
 	
 	public void StaminaExpSlotChecker(){
 		for(int i = 0; i < maxBarPoints; i++){
-			if(i < staminaPoints){
-				if(staminaSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
-					staminaSkillPoints[i].GetComponent<Image>().sprite = filledExpBar;
-					//Sneller stamina regen hier added
-					float staminaBonus = maxStaminaBonus / maxBarPoints;
-					GetComponent<Stamina>().maxStamina += staminaBonus;
-					float staminaRegenBonus = (staminaRegenRate - minStaminaRegenBonus) / maxBarPoints;
-					GetComponent<Stamina>().regenRate -= staminaRegenBonus;
-				}
+			if(staminaSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
+				staminaSkillPoints[i].GetComponent<Image>().sprite = filledExpBar;
+				float staminaBonus = maxStaminaBonus / maxBarPoints;
+				GetComponent<Stamina>().maxStamina += staminaBonus;
+				float staminaRegenBonus = (staminaRegenRate - minStaminaRegenBonus) / maxBarPoints;
+				GetComponent<Stamina>().regenRate -= staminaRegenBonus;
 			}
-			else{
-				break;
-			}
-			if(staminaPoints == maxBarPoints){
-				//Add de maxbonus effect hier
-				GetComponent<Stamina>().mayBlock = true;
-			}
+		}
+		if(staminaPoints == maxBarPoints){
+			GetComponent<Stamina>().mayBlock = true;
 		}
 	}
 	
@@ -336,22 +322,15 @@ public class SkillTree : MonoBehaviour {
 	
 	public void HealthExpSlotChecker(){
 		for(int i = 0; i < maxBarPoints; i++){
-			if(i < healthPoints){
-				if(healthSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
-					healthSkillPoints[i].GetComponent<Image>().sprite = filledExpBar;
-					//Verhoog maxHealth hier
-					gameMng.GetComponent<Heartscript>().maxLength++;
-					gameMng.GetComponent<Heartscript>().NewBar();
-					GetComponent<PlayerHealth>().MaxHealthConnect();
-				}
+			if(healthSkillPoints[i].GetComponent<Image>().sprite == tempExpBar){
+				healthSkillPoints[i].GetComponent<Image>().sprite = filledExpBar;
+				gameMng.GetComponent<Heartscript>().maxLength++;
+				gameMng.GetComponent<Heartscript>().NewBar();
+				GetComponent<PlayerHealth>().MaxHealthConnect();
 			}
-			else{
-				break;
-			}
-			if(healthPoints == maxBarPoints){
-				//Add de maxbonus effect hier
-				GetComponent<HealthShield>().ActivateShield();
-			}
+		}
+		if(healthPoints == maxBarPoints){
+			GetComponent<HealthShield>().ActivateShield();
 		}
 	}
 	

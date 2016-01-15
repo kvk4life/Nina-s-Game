@@ -48,16 +48,12 @@ public class Heartscript : MonoBehaviour
 	}
 	
 	public void LoseHeart (float loseAmount)
-	{
-		print ("Lose mij damage = " + loseAmount);
-		
+	{		
 		for(int i = 0; i < loseAmount ; i++){
 			if (hearts[h] >= 1) 
 			{
-				print ("aauw!");
 				hearts[h] -= 1;
 			} 
-			
 			else 
 			{
 				h -= 1;
@@ -81,7 +77,9 @@ public class Heartscript : MonoBehaviour
 			else 
 			{
 				h += 1;
-				hearts[h] += 1;
+				if(hearts[h] < hearts.Length){
+					hearts[h] += 1;
+				}
 			}
 			
 			HeartCheck();

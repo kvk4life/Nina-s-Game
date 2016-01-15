@@ -21,7 +21,11 @@ public class Enemy_Attack : Enemy_Stats {
 	void DamageCheck(){
 		if (player.GetComponent<Defense> ().blocken) {
 			player.GetComponent<Stamina> ().StaminaReduction (staminaDamage);
-		} else {
+			if(player.GetComponent<Defense>().shieldMaxed){
+				player.GetComponent<Defense>().BlockCounter();
+			}
+		}
+		else {
 			player.GetComponent<PlayerHealth> ().Damage (power);
 		}
 	}

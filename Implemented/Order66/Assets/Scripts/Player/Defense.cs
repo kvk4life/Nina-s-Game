@@ -3,7 +3,11 @@ using System.Collections;
 
 public class Defense : MonoBehaviour {
 	public bool blocken;
+	public bool shieldMaxed;
 	public float minStaminaReq;
+	public int blockCount;
+	public int maxBlockCount;
+	public float blockHeal;
 
 	public void Update(){
 		Blocking ();
@@ -16,6 +20,16 @@ public class Defense : MonoBehaviour {
 		}
 		else {
 			blocken = false;
+		}
+	}
+
+	public void BlockCounter(){
+		if (blockCount < maxBlockCount) {
+			blockCount++;
+		}
+		else {
+			GetComponent<PlayerHealth>().Heal (blockHeal);
+			blockCount = 0;
 		}
 	}
 }

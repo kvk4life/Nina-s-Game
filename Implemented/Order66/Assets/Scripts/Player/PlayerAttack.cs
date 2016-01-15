@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class PlayerAttack : MonoBehaviour {
-	private GameObject playerObject;
 	public float damage;
 	public bool doDmg;
 	public float timer;
@@ -10,7 +9,6 @@ public class PlayerAttack : MonoBehaviour {
 	public float staminaCost;
 
 	void Start (){
-		playerObject = GameObject.FindGameObjectWithTag ("Player");
 		timer = attackRate;
 	}
 
@@ -20,7 +18,7 @@ public class PlayerAttack : MonoBehaviour {
 				doDmg = true;
 				//hit animatie	
 				timer = attackRate;
-				playerObject.GetComponent<Stamina>().StaminaReduction(staminaCost);
+				GetComponent<Stamina>().StaminaReduction(staminaCost);
 			}
 		} else {
 			timer -=Time.deltaTime;
