@@ -117,17 +117,10 @@ public class AntAI : MonoBehaviour
 		{
 			if(waypointDist < 5)
 			{
-				if(counter < wayLenght-1)
+				if(counter < wayLenght)
 				{
 					RandomCounter();
 					stopTime = 3;
-					counter++;
-				}
-				else
-				{
-					RandomCounter();
-					stopTime = 3;
-					counter = 0;
 				}
 			}
 		}
@@ -143,7 +136,7 @@ public class AntAI : MonoBehaviour
 	
 	void RandomCounter()
 	{
-		counter = (Random.Range(0, wayLenght-1));
+		counter = (Random.Range(0, wayLenght));
 	}
 	
 	void Timer ()
