@@ -3,38 +3,38 @@ using System.Collections;
 
 public class Play_Animation : MonoBehaviour 
 {
-	public Animator animation;	
+	public Animator anim;	
 
 
-	void Move(float moveSpeed)
+	public void Move(float moveSpeed)
 	{
 		//1 = walk, 2 = running
-		animation.SetFloat("moveSpeed", moveSpeed);
+		anim.SetFloat("moveSpeed", moveSpeed);
 	}
 
 	public void Death()
 	{
-		animation.SetBool("death", true);
+		anim.SetBool("death", true);
 	}
 		
 	public void PickUp()
 	{
-		animation.SetTrigger("pickUp");
+		anim.SetTrigger("pickUp");
 	}
 
 	public void Gaurd()
 	{
-		animation.SetBool("guard", true);
+		anim.SetBool("guard", true);
 	}
 
 	public void StopGuard()
 	{
-		animation.SetBool("guard", false);
+		anim.SetBool("guard", false);
 	}
 
 	public void Attack(float attack)
 	{
 		//0 = first attack, 1 = second attack, 2 is third attack
-		animation.SetFloat("moveSpeed", attack);
+		anim.SetFloat("moveSpeed", attack);
 	}
 }
