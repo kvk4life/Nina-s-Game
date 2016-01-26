@@ -17,7 +17,7 @@ public class AntAI : MonoBehaviour
 	public float randomNum;
 	public int bonusSpeed;
 	public Transform[] wayPointList;
-	public float wayPointDistanceCheck;
+	private float wayPointDistanceCheck;
 	public int wayCounter;
 	private float playerDist;
 	private float waypointDist;
@@ -33,6 +33,7 @@ public class AntAI : MonoBehaviour
 	
 	void Start () 
 	{
+		wayPointDistanceCheck = 100;
 		waypointTarget = new Transform[wayLenght];
 		
 		wayCounter = 0;
