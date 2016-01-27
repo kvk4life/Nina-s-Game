@@ -21,6 +21,7 @@ public class Defense : MonoBehaviour {
 		else {
 			blocken = false;
 		}
+		GetComponent<Play_Animation> ().Gaurd (blocken);
 	}
 
 	public void BlockCounter(){

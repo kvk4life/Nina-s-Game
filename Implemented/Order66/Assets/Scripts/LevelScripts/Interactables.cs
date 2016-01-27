@@ -49,6 +49,7 @@ public class Interactables : MonoBehaviour {
 	void Update() {
 		if (Input.GetButtonDown("Interact")) {
 			Interact();
+			GetComponent<Play_Animation>().PickUp();
 		}
     }
 	
