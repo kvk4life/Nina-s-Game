@@ -40,7 +40,7 @@ public class BreathHolding : MonoBehaviour {
 	}
 
 	public void HoldingBreath(){
-		if (Input.GetButton ("HoldBreath")) {
+		if (Input.GetButton ("HoldBreath") && curBreath > minBreath) {
 			holdBreath = true;
 		}
 		else{
