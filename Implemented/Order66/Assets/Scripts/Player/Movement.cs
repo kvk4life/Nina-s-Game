@@ -87,7 +87,6 @@ public class Movement : MonoBehaviour {
 		translation *= Time.deltaTime;
 		transform.Translate(0, 0, translation);
 		GetComponent<Play_Animation> ().Move (translation);
-		print ("MoveSpeed = " + translation);
 	}
 
 	void Jump (){

@@ -3,34 +3,39 @@ using System.Collections;
 
 public class PlayerAttack : MonoBehaviour {
 	public float damage;
-	public bool doDmg;
 	public float timer;
-	public float attackRate;
+	private float attackRate;
+	public float comboCounter = 1;
 	public float staminaCost;
+	private GameObject theTarget;
 
 	void Start (){
-		timer = attackRate;
+		attackRate = timer;
 	}
 
 	void Update (){
 		if (timer < 1) {
 			if (Input.GetButtonDown("Fire1")) {
-				doDmg = true;
-				//hit animatie	
 				timer = attackRate;
+				ComboTimer();
 				GetComponent<Stamina>().StaminaReduction(staminaCost);
 			}
-		} else {
+		}
+		else {
 			timer -=Time.deltaTime;
 		}
 	}
 
-	void OnCollision(Collider collision){
-		if (doDmg) {
-			if (collision.transform.tag == "Enemy") {
-				collision.transform.GetComponent <EnemyHealth> ().HealthEnemy (damage);
-			}
-			doDmg = false;
-		}
+	void ComboTimer(){
+		GetComponent<Play_Animation> ().Attack ();
+		Damager ();
+	}
+
+	public void Targeter(GameObject myTarget){
+		theTarget = myTarget;
+	}
+
+	void Damager(){
+		theTarget.transform.GetComponent <EnemyHealth> ().HealthEnemy (damage);
 	}
 }

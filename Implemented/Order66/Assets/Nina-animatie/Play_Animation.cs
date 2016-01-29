@@ -31,9 +31,8 @@ public class Play_Animation : MonoBehaviour
 		anim.SetBool("guard", block);
 	}
 	
-	public void Attack(float attack)
+	public void Attack()
 	{
-		//0 = first attack, 1 = second attack, 2 is third attack
-		anim.SetFloat("moveSpeed", attack);
+		anim.SetTrigger("attacktrigger");
 	}
 }
