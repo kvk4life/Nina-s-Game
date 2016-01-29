@@ -21,7 +21,6 @@ public class ActivateNextLevel : MonoBehaviour {
 		if(collision.transform.tag == "Player"){
 			nextLevelText.SetActive(false);
 			NextLevel(collision.gameObject);
-			nextLevelText.SetActive(false);
 		}
 	}
 

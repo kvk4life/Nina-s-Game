@@ -14,8 +14,10 @@ public class Movement : MonoBehaviour {
 	public bool mayJump;
 	public RaycastHit rayHit;
 	public GameObject walkParticle;
+	private GameObject gameMNGR;
 
 	void Start(){
+		gameMNGR = GameObject.FindGameObjectWithTag ("GameManager");
 		rb = GetComponent<Rigidbody>();
 	}
 
@@ -38,6 +40,9 @@ public class Movement : MonoBehaviour {
 	void OnCollisionEnter(Collision col){
 		if (col.transform.tag == "Platform") {
 			jumpCounter = 0;
+		} 
+		if (col.transform.tag == "Water") {
+			gameMNGR.GetComponent<GameOver> ().gameOver = true;
 		} 
 	}
 
